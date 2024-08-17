@@ -56,7 +56,7 @@ struct Interceptor {
     }
   };
 
-  stl::vector<Entry *> entries;
+  std::vector<Entry *> entries;
 
   static Interceptor *Shared();
 

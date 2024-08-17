@@ -33,11 +33,11 @@ static bool memory_region_comparator(MemRegion a, MemRegion b) {
   return (a.addr() < b.addr());
 }
 
-stl::vector<MemRegion> *regions;
+std::vector<MemRegion> *regions;
 
-const stl::vector<MemRegion> &ProcessRuntime::getMemoryLayout() {
+const std::vector<MemRegion> &ProcessRuntime::getMemoryLayout() {
   if (regions == nullptr) {
-    regions = new stl::vector<MemRegion>();
+    regions = new std::vector<MemRegion>();
   }
 
   regions->clear();
@@ -86,11 +86,11 @@ const stl::vector<MemRegion> &ProcessRuntime::getMemoryLayout() {
   return *regions;
 }
 
-static stl::vector<RuntimeModule> *modules;
+static std::vector<RuntimeModule> *modules;
 
-const stl::vector<RuntimeModule> &ProcessRuntime::getModuleMap() {
+const std::vector<RuntimeModule> &ProcessRuntime::getModuleMap() {
   if (modules == nullptr) {
-    modules = new stl::vector<RuntimeModule>();
+    modules = new std::vector<RuntimeModule>();
   }
   modules->clear();
 

@@ -15,7 +15,7 @@ struct ExternalReference {
 struct AssemblerBase {
   addr_t fixed_addr;
   CodeMemBuffer code_buffer_;
-  stl::vector<RelocDataLabel *> data_labels;
+  std::vector<RelocDataLabel *> data_labels;
 
   explicit AssemblerBase(addr_t fixed_addr) {
     this->fixed_addr = fixed_addr;

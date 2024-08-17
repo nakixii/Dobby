@@ -11,14 +11,14 @@
 #include <vector>
 #include <algorithm>
 
-#define LINE_MAX 2048
+// #define LINE_MAX 2048
 
 static bool memory_region_comparator(MemRange a, MemRange b) {
-  return (a.start < b.start);
+  return (a.start() < b.start());
 }
 
-stl::vector<MemRegion> regions;
-const stl::vector<MemRegion> &ProcessRuntime::getMemoryLayout() {
+std::vector<MemRegion> regions;
+const std::vector<MemRegion> &ProcessRuntime::getMemoryLayout() {
   regions.clear();
 
   FILE *fp = fopen("/proc/self/maps", "r");
@@ -91,10 +91,10 @@ const stl::vector<MemRegion> &ProcessRuntime::getMemoryLayout() {
   return regions;
 }
 
-static stl::vector<RuntimeModule> *modules;
-static stl::vector<RuntimeModule> &get_process_map_with_proc_maps() {
+static std::vector<RuntimeModule> *modules;
+static std::vector<RuntimeModule> &get_process_map_with_proc_maps() {
   if (modules == nullptr) {
-    modules = new stl::vector<RuntimeModule>();
+    modules = new std::vector<RuntimeModule>();
   }
 
   FILE *fp = fopen("/proc/self/maps", "r");
@@ -176,8 +176,8 @@ static stl::vector<RuntimeModule> &get_process_map_with_proc_maps() {
 }
 
 #if defined(__LP64__)
-static stl::vector<RuntimeModule> get_process_map_with_linker_iterator() {
-  stl::vector<RuntimeModule> ProcessModuleMap;
+static std::vector<RuntimeModule> get_process_map_with_linker_iterator() {
+  std::vector<RuntimeModule> ProcessModuleMap;
 
   static int (*dl_iterate_phdr_ptr)(int (*)(struct dl_phdr_info *, size_t, void *), void *);
   dl_iterate_phdr_ptr = (__typeof(dl_iterate_phdr_ptr))dlsym(RTLD_DEFAULT, "dl_iterate_phdr");
@@ -201,7 +201,7 @@ static stl::vector<RuntimeModule> get_process_map_with_linker_iterator() {
         }
 
         // push to vector
-        auto ProcessModuleMap = reinterpret_cast<stl::vector<RuntimeModule> *>(data);
+        auto ProcessModuleMap = reinterpret_cast<std::vector<RuntimeModule> *>(data);
         ProcessModuleMap->push_back(module);
         return 0;
       },
@@ -211,7 +211,7 @@ static stl::vector<RuntimeModule> get_process_map_with_linker_iterator() {
 }
 #endif
 
-const stl::vector<RuntimeModule> &ProcessRuntime::getModuleMap() {
+const std::vector<RuntimeModule> &ProcessRuntime::getModuleMap() {
 #if defined(__LP64__) && 0
   // TODO: won't resolve main binary
   return get_process_map_with_linker_iterator();

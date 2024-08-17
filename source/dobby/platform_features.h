@@ -43,9 +43,10 @@
 #endif
 #else
 #endif
-
+/*
 #ifdef __cplusplus
 #include "TINYSTL/vector.h"
 #include "TINYSTL/unordered_map.h"
 #include "TINYSTL/tinystl.h"
 #endif
+*/

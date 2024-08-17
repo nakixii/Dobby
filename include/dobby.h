@@ -2,6 +2,8 @@
 #define dobby_h
 
 #ifdef __cplusplus
+#include <vector>
+#include <unordered_map>
 extern "C" {
 #endif
 

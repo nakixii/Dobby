@@ -5,6 +5,7 @@
 
 struct RuntimeModule {
   void *base;
+  void *load_address;
   char path[1024];
 };
 
@@ -20,9 +21,9 @@ struct MemRegion : MemRange {
 
 class ProcessRuntime {
 public:
-  static const stl::vector<MemRegion> &getMemoryLayout();
+  static const std::vector<MemRegion> &getMemoryLayout();
 
-  static const stl::vector<RuntimeModule> &getModuleMap();
+  static const std::vector<RuntimeModule> &getModuleMap();
 
   static RuntimeModule getModule(const char *name);
 };

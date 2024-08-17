@@ -8,6 +8,8 @@
 #include "MemoryAllocator/NearMemoryAllocator.h"
 #include <stdint.h>
 
+void std::__1::__libcpp_verbose_abort(char const*, ...) { std::abort(); }
+
 __attribute__((constructor)) static void ctor() {
   DEBUG_LOG("================================");
   DEBUG_LOG("Dobby");

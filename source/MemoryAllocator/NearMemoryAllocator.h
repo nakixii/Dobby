@@ -39,8 +39,8 @@ PUBLIC inline void dobby_register_alloc_near_code_callback(dobby_alloc_near_code
 }
 
 struct NearMemoryAllocator {
-  stl::vector<simple_linear_allocator_t*> code_page_allocators;
-  stl::vector<simple_linear_allocator_t*> data_page_allocators;
+  std::vector<simple_linear_allocator_t*> code_page_allocators;
+  std::vector<simple_linear_allocator_t*> data_page_allocators;
 
   inline static NearMemoryAllocator *Shared();
 

@@ -59,8 +59,8 @@ using CodeMemBlock = MemBlock;
 using DataMemBlock = MemBlock;
 
 struct MemoryAllocator {
-  stl::vector<simple_linear_allocator_t *> code_page_allocators;
-  stl::vector<simple_linear_allocator_t *> data_page_allocators;
+  std::vector<simple_linear_allocator_t *> code_page_allocators;
+  std::vector<simple_linear_allocator_t *> data_page_allocators;
 
   inline static MemoryAllocator *Shared();
 

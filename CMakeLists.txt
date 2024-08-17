@@ -42,7 +42,7 @@ if ((NOT DEFINED CMAKE_BUILD_TYPE) OR (CMAKE_BUILD_TYPE STREQUAL "Debug"))
 endif ()
 
 
-set(compile_definitions "")
+set(compile_definitions "-Os -flto -fno-asynchronous-unwind-tables -fno-exceptions")
 
 # for arm64, allow access q8 - q31
 if (FullFloatingPointRegisterPack)
